@@ -167,7 +167,7 @@ List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmembe
                                <div class="pnav-cnt do" style="width:100%;border:none;margin-top:6px;">
 						       	<div class="pnav-box">
 									<div class="box-title list-group-item0" id="let" >
-									  <input type="checkbox" value="javaweb组"/>
+									   <input type="checkbox" value="javaweb组"/>
 									  <label class="pnav-letter">&nbsp;&nbsp;aa</label>
 									</div>
 									<ul class="box-list" id="letto">									  
@@ -205,8 +205,8 @@ List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmembe
 								</div>
 								
 								<div class="pnav-box">
-									  <input type="checkbox" value="javaweb组"/>
 									<div class="box-title list-group-item0" id="let" >
+									  <input type="checkbox" value="javaweb组"/>
 									  <label class="pnav-letter">&nbsp;&nbsp;bb</label>
 									</div>
 									<ul class="box-list" id="letto">									  
