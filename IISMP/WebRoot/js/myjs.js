@@ -48,7 +48,7 @@ function LimitTextArea200(field) {
  * 打开新建公告界面
  */
 function opennewannocement() {
-	var url0 = url + '/openanno_newpage';
+	var url0 = url + 'openanno_newpage';
 	window.location.href = url0;
 	/*var url11 = url + '/findsectioninfo'
 	$.ajax({
