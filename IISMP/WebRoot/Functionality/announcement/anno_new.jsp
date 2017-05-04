@@ -8,7 +8,7 @@ List<Announce_section> ass = (List<Announce_section>)session.getAttribute("anno_
 List<Section> sectioninfo = (List<Section>)request.getAttribute("sectioninfo");
 List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiinfo");
 %>
-
+<!-- 测试 -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
   <head>
