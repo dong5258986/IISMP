@@ -36,8 +36,6 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
     <!-- 日期显示 -->
     <link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
 	<script type="text/javascript" src="js/pikaday.min.js"></script>
-	<!-- 树形列表  -->
-	<link rel="stylesheet" type="text/css" href="css/update8.css"/>
     
     <!-- 下划线跟随效果 -->
     <link href="css/nav-animation.css" rel="stylesheet" type="text/css" />  
@@ -123,153 +121,23 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
 							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">接收人：</label>
-							  	
-							  	<div class="col-sm-4">
-							      <input type="text" name="getanno_member" id="getanno_member" class="form-control uname " placeholder="请选择审批人" data-toggle="modal" data-target="#modal-container-722555"/>
-							    </div>
-							
-			<!-- 弹框开始 -->
-			<div class="modal fade" id="modal-container-722555" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-			   <div class="modal-content">
-				 <div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel" style="font-size: 16px;">
-						详细信息
-					</h4>
-				  </div>						  
-				 <div class="modal-body" style="font-size: 13px;height:468px;">
-				    <div class="col-md-7">
-				      
-				      <div class="col-md-12">
-				        <div style="height:100%;">
-				         <!-- 搜索框开始 -->
-				         <div class="input-group"  style="box-shadow: 0 1px 1px rgba(0, 0, 0, .05);border-radius: 4px;">
-		                    <input type="text"  placeholder="请输入审批人姓名" class="form-control input-sm" style="width: 100%;">
-		                    <span class="input-group-btn">
-		                       <button class="btn btn-default btn-sm" type="button">查找</button>
-		                    </span>
-		                 </div>
-				         <!-- 搜索框结束 -->
-			      
-						<!-- 选择框开始 -->
-						<div class="tab" style="height:400px;width:100%;border:1px solid #ccc;margin-top:5px;box-shadow: 0 1px 1px rgba(0, 0, 0, .05);border-radius: 4px;">
-						  <div id="tree" style="width:100%;">
-						    <ul class="nav nav-tabs">
-							  <li class="active">
-							    <a href="#" style="color:#31B0D5;font-weight:700;border-top:2px solid #31B0D5;">人员</a>
-							  </li>
-						    </ul>
-						   </div> 
-						    <!-- 树列表开始 -->  
-                               <div id="memberinfosid" class="pnav-cnt do" style="width:100%;border:none;margin-top:6px;">
-						       	<%
-						       	if(sectioninfo!=null){
-						       		for(Section s : sectioninfo){
-						       	 %>
-						       	<div class="pnav-box">
-									<div class="box-title list-group-item0" id="let" >
-									   <input type="checkbox" value="<%=s.getSection_name() %>"/>
-									  <label class="pnav-letter">&nbsp;&nbsp;<%=s.getSection_name() %></label>
-									</div>
-									<ul class="box-list" id="letto">
-									<%
-								if(msiinfo!=null){
-									for(MembershipInfo m : msiinfo){
-										if(m.getM_sectionname().equals(s.getSection_name())){
-									 %>									  
-									  <li class="list-group-item">
-									      <label class="del">
-									          <input type="checkbox" name="checkbox"  value="<%=m.getM_truename() %>"/>
-									          &nbsp;&nbsp;<%=m.getM_truename() %>
-									      </label>  							     
-									  </li> 
-									 <%
-									 }
-									 }
-									 }
-									  %>
-									</ul>
+							  	<div class="col-sm-10" style="margin-top: 10px;">
+							  		<%
+							  		if(sectioninfo!=null){
+							  			for(Section s : sectioninfo){
+							  		 %>
+							  		<div class="col-sm-3">
+							  			<label >
+							  				<input type="checkbox" value="<%=s.getSection_name() %>" style="display: inline-block;vertical-align: middle;margin-bottom: 2px; " id="getmanid" name="getman">
+							  				&nbsp;&nbsp;<%=s.getSection_name() %>
+							  			</label>
+							  		</div>
+							  		<%
+							  		}
+							  		}
+							  		 %>
+							  		
 								</div>
-								<%
-								}
-								}
-								 %>
-							 </div>
-			 			<script type="text/javascript">
-						    //滑动
-						    $(".box-list").hide();
-							$(".box-title").click(function(){ 
-			                   $(this).parent().find('.box-list').slideToggle()})
-						 </script>
-				        </div>
-				      
-					    <!-- 树列表结束 -->	
-					</div>			
-			     </div>
-			  </div>
-							 
-			<!-- 选择框结束 -->
-			  
-			<div class="col-md-5" >
-			  <!-- 已选框 -->
-			  <div class="col-md-12" >
-			      <div class="panel panel-default"  style="width:130%;height:99.3%;margin-left:-50px;">
-					<div class="panel-heading">
-					   <span>已选接受人</span>
-					   <span class="clear" style="float:right;cursor:pointer;">清空</span>
-					</div>
-					<div class="panel-body"  id="nm"  value="">
-					</div>
-				  </div>
-			  </div>
-			</div>				
-               <script>
-                //获取人名
-
-                $(document).ready(function(){
-					$("li").click(function(){   // 将所有选中的复选框通过函数返回值生成新的jQuery 对象,显示出的是input中value的内容
-					  text = $("input:checkbox[name='checkbox']:checked").map(function(index,elem) {
-					      return $(elem).val();  
-					  }).get().join(" <br /> ");
-					  $(".panel-body").html(text);  //显示人名
-					  
-					  /* if($(':checkbox:checked').length-1<1){    //判断超出人数
-					     $(".lot").hide();  
-                      }else{
-                         $(".lot").show();
-                         $(".shu").html($(':checkbox:checked').length-1);  //显示超出人数
-                      }     */                 
-					});
-					
-				    $(".clear").click(function(){    //清空人名
-				       $(".panel-body").empty();
-				    });
-				 }); 		
-
-               </script>
-       </div>
-       <div class="modal-footer">
-	      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> 
-	      <button type="button" id="btn" class="btn btn-primary btn">确定</button>
-       </div>
-       </div>
-       <script>
-          $(document).ready(function(){
-             //点击确定，input显示选中人名
-                $("#btn").click(function(){
-                 con = $("#nm").html();    //获取选中的人名
-                 if($(':checkbox:checked').length>0 && $(':checkbox:checked').length<2 ){    //判断是否有选中的人名
-                   $("#getanno_member").val(con);          //将选中的人名传到input中
-		           $("#modal-container-722555").modal("hide");      //隐藏模态框
-                 }else{
-                   alert('请选择一位审批人！');
-                 }   
-	         });
-          });
-        </script>
-     </div>
-  </div>			
 							
 							</div>
 							<div class="form-group">

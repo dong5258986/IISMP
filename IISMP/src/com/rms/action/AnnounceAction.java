@@ -3,7 +3,9 @@ package com.rms.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,8 +49,15 @@ public class AnnounceAction extends BaseAction{
 	private String announcement_type;
 	private String anno_editnote;
 	private int id;
+	private String delitems;
 	
 	
+	public String getDelitems() {
+		return delitems;
+	}
+	public void setDelitems(String delitems) {
+		this.delitems = delitems;
+	}
 	public String getAnno_editnote() {
 		return anno_editnote;
 	}
@@ -265,6 +274,13 @@ public class AnnounceAction extends BaseAction{
 		HttpSession session = request.getSession();
 		MembershipInfo memberinfo = (MembershipInfo)session.getAttribute("memberinfo");
 		String time = DateUtil.getStringDate();
+System.out.println(delitems);
+		/*String items = delitems;
+		List delList = new ArrayList();
+		String[] strs = items.split(",");
+		for (String str : strs) {
+			delList.add(str);
+		}*/
 		
 		if(anno_editnote.equals("add")){
 			Announcement an=new Announcement();
@@ -713,5 +729,4 @@ System.out.println("*********--"+announcement_info);
 		request.setAttribute("msiinfo", msi);
 		return "success";
 	}
-	
 }

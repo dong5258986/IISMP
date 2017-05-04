@@ -321,4 +321,13 @@ public class SystemSettingServiceImpl extends BaseService implements SystemSetti
 		return systemsetDao.findAllUseMember();
 	}
 
+	/**
+	 * 根据sectionname查询出该分组下的启用成员信息
+	 * @throws Exception
+	 * @author yangzijia
+	 */
+	public List<MembershipInfo> getmemberinfoBysectionname(String sectionname) {
+		return systemsetDao.getmemberinfoBysectionname(sectionname);
+	}
+
 }

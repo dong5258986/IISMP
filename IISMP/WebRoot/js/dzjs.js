@@ -178,11 +178,26 @@ function addannocement(){
 	var url11 = url+'/showAnnounceAction';
 	var an_title1=$("#announcement_title").val();
 	var an_info1=$(document.getElementsByTagName('iframe')[0].contentWindow.document.body).html();
-	
 	var an_section1=$("#as_name").val();
 	var m_role=$("#m_role").val();
 	var anno_editnote = $("#anno_editnote").html();
 	var anno_id = $("#anno_id").html();
+	
+	
+	var checkedList = new Array();
+	var checks = $("input[name=getman]:checked");
+	//alert($("#getmanid").val());
+    //alert(checks)
+	for(var i in checks){
+		if(checks[i].checked){
+			checkedList[i] = checks[i].value;
+			trueAfalse = true ; 
+		}
+	} 
+	//alert(checkedList);
+    if(!trueAfalse){
+        return alert('请选择接受公告的分组!');
+    }
 	var startpage = 1;
 	$.ajax({   
 		type:'POST', //用POST方式传输   
@@ -194,7 +209,8 @@ function addannocement(){
 			 "as_name":an_section1,
 			 "m_role":m_role,
 			 "anno_editnote":anno_editnote,
-			 "announcement_id":anno_id
+			 "announcement_id":anno_id,
+			 "delitems":checkedList.toString()
 		},
 		cache:false,
 		success:function(data) {
@@ -2232,5 +2248,5 @@ function publishlog2(){
 			alert("存入草稿箱！");
         } 
     });
-	
 }
+

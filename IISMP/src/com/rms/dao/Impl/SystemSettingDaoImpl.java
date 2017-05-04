@@ -298,4 +298,15 @@ public class SystemSettingDaoImpl extends BaseDao implements SystemSettingDao{
 		return s;
 	}
 
+	/**
+	 * 根据sectionname查询出该分组下的启用成员信息
+	 * @throws Exception
+	 * @author yangzijia
+	 */
+	public List<MembershipInfo> getmemberinfoBysectionname(String sectionname) {
+		@SuppressWarnings("unchecked")
+		List<MembershipInfo> s = hibernateTemplate.find("from MembershipInfo where m_sectionname='"+sectionname+"' and m_state='启用'");
+		return s;
+	}
+
 }

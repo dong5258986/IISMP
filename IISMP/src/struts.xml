@@ -132,6 +132,9 @@
 			<result name="success">/Functionality/announcement/anno_new.jsp</result>
 			<result name="error">/Functionality/error.jsp</result>
 		</action>
+		
+		<!-- 根据sectionname查询出该分组下的启用成员信息 -->
+		<action name="getmemberinfoBysectionname" class="announceAction" method="getmemberinfoBysectionname"></action>
 
 	<!-- 设备板块 -->
  

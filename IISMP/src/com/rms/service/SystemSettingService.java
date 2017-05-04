@@ -197,6 +197,14 @@ public interface SystemSettingService {
 	 */
 	public abstract List<MembershipInfo> findAllUseMember();
 
+	/**
+	 * 根据sectionname查询出该分组下的启用成员信息
+	 * @throws Exception
+	 * @author yangzijia
+	 */
+	public abstract List<MembershipInfo> getmemberinfoBysectionname(
+			String sectionname);
+
 
 
 

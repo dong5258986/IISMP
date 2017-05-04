@@ -17,9 +17,9 @@ public class Announcement {
 	private String m_role;
 	private String announcement_type;
 	private int announcement_views;
+	private int getman_id;
 	@Id
 	@GeneratedValue
-	
 	public int getAnnouncement_id() {
 		return announcement_id;
 	}
@@ -85,6 +85,12 @@ public class Announcement {
 	}
 	public void setAnnouncement_views(int announcement_views) {
 		this.announcement_views = announcement_views;
+	}
+	public int getGetman_id() {
+		return getman_id;
+	}
+	public void setGetman_id(int getman_id) {
+		this.getman_id = getman_id;
 	}
 	
 }
