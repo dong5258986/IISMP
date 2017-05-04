@@ -90,37 +90,46 @@ List<Approval> approval=(List<Approval>)session.getAttribute("approval");
                 	<div style="overflow-x:hidden; height:498px; "> 
 	
 						<!-- form表 开始 -->    
-						  <form class="form-horizontal" action="addApply" method="post" enctype="multipart/form-data" role="form"> 
+						  <form class="form-horizontal" action="upload" method="post" enctype="multipart/form-data" role="form"> 
 					    	  <div class="form-group" >
 					    	    <label for="firstname" class="col-sm-2 control-label" name="tyepname" >申请类型：</label>
 							    <div class="col-sm-2 top">
-						 			<input name="approval_type" class="form-control"   id="types"></input>
+								    <!-- <select class="form-control " name="tyepname"  id="types">
+								      <option onclick="javascript:void(0);">全部类型</option>
+								      <option onclick="javascript:void(0);">报销</option>
+								      <option onclick="javascript:void(0);">日常</option>
+								      <option onclick="javascript:void(0);">其他</option>
+								    </select> -->
+								    <input name="approval_type" id="types"></input>
 							    </div>
 							  </div>
-							  <div class="form-group">
+						      <div class="form-group">
 							   <label for="firstname"  class="col-sm-2 control-label">申请人：</label>
-						    		<div class="col-sm-2 top">
-							 	 <input class="form-control" name="apply_member"  value="<%=mm.getM_truename()%>"></input> 
-							 </div>
+							  <input  value="<%=mm.getM_truename()%>"> 
+							  </input>
 							 </div>
 							 <div class="form-group">
 							   <label for="firstname" class="col-sm-2 control-label">申请部门：</label>
-							   <div class="col-sm-2 top">
-							   <input class="form-control"  name="member_section" value="<%=mm.getM_sectionname()%>"></input> 
+							   <div class="col-sm-7 top" id="sssection"><%=mm.getM_sectionname() %>
 							   </div>
 							 </div>
 							 <div class="form-group">
 							   <label for="firstname"  class="col-sm-2 control-label"><span class="red">*&nbsp;</span>申请内容：</label>
-							   <div class="col-sm-6">
+							   <div class="col-sm-6"		>
 							    <textarea  id="okinfo"  name="apply_info" class="form-control" rows="3" 	></textarea>
 							   </div>
 							 </div>
 						     <div class="form-group">
-							   <label for="firstname"  class="col-sm-2 control-label">上传附件：</label>
-							     <span style="float:left;margin:0px;">
-							   <input type="file" data-min-file-count="1"  name="myFile">
-							   </span>
-							 
+							   <label for="firstname" class="col-sm-2 control-label">上传附件：</label>
+							   <input type="file" name="myFile">
+							 <!--   <div class="col-sm-7" id="checkbox">
+								   <label class="checkbox-inline">
+									 <input type="radio" name="optionsRadiosinline" id="optionsRadios3" onclick="show()" value="option1"> 是
+								   </label>
+								   <label class="checkbox-inline">
+									 <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2" checked> 否
+								   </label>
+							   </div> -->
 							   <div class="col-sm-7" id="upload">
 								  <div class="form-group" style="margin:0;"> 
 						           <span style="float:left;margin:0px;">
@@ -140,12 +149,19 @@ List<Approval> approval=(List<Approval>)session.getAttribute("approval");
 							    </div>
 							  </div>
 							  <tr>
-				  		 <div class="col-sm-6">	<td><input  class="btn btn-default btn-info" type="submit" value="确定"></td>
-				  			<div class="col-sm-2"></div>  <td><input class="btn btn-default" type="reset"></td></div>
+				  			<td><input type="submit" value="上传"></td>
+				  			<td><input type="reset"></td>
 				  			</tr>
 						    </form>	    	  
 						  <br />
-						
+						  <div class="form-group">
+							  <div class="col-sm-2"></div> 
+							  <div class="col-sm-6">
+							    <button type="button" class="btn btn-default btn-info" onclick="Apply()">提交</button>
+							     &nbsp; &nbsp; &nbsp;
+         			            <button type="button" class="btn btn-default" onclick="fanhuia()">取消</button> 	  
+		                      </div> 			
+						  </div>
 			           </div>									 
 	     	      </div>	              	                 	
 				 </div>
