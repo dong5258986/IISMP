@@ -2,7 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-/* List<Announce_section> ass = (List<Announce_section>)session.getAttribute("anno_section"); */
+List<Announce_section> ass = (List<Announce_section>)session.getAttribute("anno_section"); 
 //List<Announcement> announcement=(List<Announcement>)request.getAttribute("an");
 //List<MembershipInfo> mm=(List<MembershipInfo>)session.getAttribute("membershipInfo");
 List<Section> sectioninfo = (List<Section>)request.getAttribute("sectioninfo");
