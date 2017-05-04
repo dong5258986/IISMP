@@ -174,8 +174,9 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
 									</div>
 									<ul class="box-list" id="letto">
 									<%
-										if(msiinfo!=null){
-										for(MembershipInfo m : msiinfo){
+								if(msiinfo!=null){
+									for(MembershipInfo m : msiinfo){
+										if(m.getM_sectionname().equals(s.getSection_name())){
 									 %>									  
 									  <li class="list-group-item">
 									      <label class="del">
@@ -184,6 +185,7 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
 									      </label>  							     
 									  </li> 
 									 <%
+									 }
 									 }
 									 }
 									  %>
