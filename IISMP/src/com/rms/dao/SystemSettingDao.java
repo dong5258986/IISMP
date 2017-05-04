@@ -168,4 +168,11 @@ public interface SystemSettingDao {
 	 */
 	public abstract void batchdeletememberbyId(int m_id);
 
+	/**
+	 * 查询出所有启用的人员
+	 * @return List<MembershipInfo>
+	 * @author yangzijia
+	 */
+	public abstract List<MembershipInfo> findAllUseMember();
+
 }

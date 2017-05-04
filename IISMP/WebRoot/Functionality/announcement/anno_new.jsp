@@ -2,11 +2,11 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-List<Announce_section> ass = (List<Announce_section>)session.getAttribute("anno_section");
-List<Announcement> announcement=(List<Announcement>)request.getAttribute("an");
-List<MembershipInfo> mm=(List<MembershipInfo>)session.getAttribute("membershipInfo");
-List<Section> section=(List<Section>)session.getAttribute("sectioninfo");
-List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmember");
+/* List<Announce_section> ass = (List<Announce_section>)session.getAttribute("anno_section"); */
+//List<Announcement> announcement=(List<Announcement>)request.getAttribute("an");
+//List<MembershipInfo> mm=(List<MembershipInfo>)session.getAttribute("membershipInfo");
+List<Section> sectioninfo = (List<Section>)request.getAttribute("sectioninfo");
+List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiinfo");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -127,7 +127,7 @@ List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmembe
 								<label class="col-sm-2 control-label">接收人：</label>
 							  	
 							  	<div class="col-sm-4">
-							      <input type="text" name="approval_member" id="apman" class="form-control uname " placeholder="请选择审批人" data-toggle="modal" data-target="#modal-container-722555"/>
+							      <input type="text" name="getanno_member" id="getanno_member" class="form-control uname " placeholder="请选择审批人" data-toggle="modal" data-target="#modal-container-722555"/>
 							    </div>
 							
 			<!-- 弹框开始 -->
@@ -164,96 +164,37 @@ List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmembe
 						    </ul>
 						   </div> 
 						    <!-- 树列表开始 -->  
-                               <div class="pnav-cnt do" style="width:100%;border:none;margin-top:6px;">
+                               <div id="memberinfosid" class="pnav-cnt do" style="width:100%;border:none;margin-top:6px;">
+						       	<%
+						       	if(sectioninfo!=null){
+						       		for(Section s : sectioninfo){
+						       	 %>
 						       	<div class="pnav-box">
 									<div class="box-title list-group-item0" id="let" >
-									   <input type="checkbox" value="javaweb组"/>
-									  <label class="pnav-letter">&nbsp;&nbsp;aa</label>
+									   <input type="checkbox" value="<%=s.getSection_name() %>"/>
+									  <label class="pnav-letter">&nbsp;&nbsp;<%=s.getSection_name() %></label>
 									</div>
-									<ul class="box-list" id="letto">									  
+									<ul class="box-list" id="letto">
+									<%
+										if(msiinfo!=null){
+										for(MembershipInfo m : msiinfo){
+									 %>									  
 									  <li class="list-group-item">
 									      <label class="del">
-									          <input type="checkbox" name="checkbox"  value="aa"/>
-									          &nbsp;&nbsp;aa
+									          <input type="checkbox" name="checkbox"  value="<%=m.getM_truename() %>"/>
+									          &nbsp;&nbsp;<%=m.getM_truename() %>
 									      </label>  							     
 									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="aa"/>
-									          &nbsp;&nbsp;aa
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="aa"/>
-									          &nbsp;&nbsp;aa
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="aa"/>
-									          &nbsp;&nbsp;aa
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="aa"/>
-									          &nbsp;&nbsp;aa
-									      </label>  							     
-									  </li> 
+									 <%
+									 }
+									 }
+									  %>
 									</ul>
 								</div>
-								
-								<div class="pnav-box">
-									<div class="box-title list-group-item0" id="let" >
-									  <input type="checkbox" value="javaweb组"/>
-									  <label class="pnav-letter">&nbsp;&nbsp;bb</label>
-									</div>
-									<ul class="box-list" id="letto">									  
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									  <li class="list-group-item">
-									      <label class="del"  >
-									          <input type="checkbox" name="checkbox"  value="bb"/>
-									          &nbsp;&nbsp;bb
-									      </label>  							     
-									  </li> 
-									</ul>
-								</div>
+								<%
+								}
+								}
+								 %>
 							 </div>
 			 			<script type="text/javascript">
 						    //滑动
@@ -318,7 +259,7 @@ List<MembershipInfo> allmem=(List<MembershipInfo>)session.getAttribute("allmembe
                 $("#btn").click(function(){
                  con = $("#nm").html();    //获取选中的人名
                  if($(':checkbox:checked').length>0 && $(':checkbox:checked').length<2 ){    //判断是否有选中的人名
-                   $("#apman").val(con);          //将选中的人名传到input中
+                   $("#getanno_member").val(con);          //将选中的人名传到input中
 		           $("#modal-container-722555").modal("hide");      //隐藏模态框
                  }else{
                    alert('请选择一位审批人！');

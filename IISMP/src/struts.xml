@@ -126,6 +126,12 @@
 		
 		<!-- 分页公告信息 -->
 		<action name="fanye" class="announceAction" method="fanye"></action>
+		
+		<!-- 查看所有的成员分组和成员信息的方法 -->
+		<action name="openanno_newpage" class="announceAction" method="openanno_newpage">
+			<result name="success">/Functionality/announcement/anno_new.jsp</result>
+			<result name="error">/Functionality/error.jsp</result>
+		</action>
 
 	<!-- 设备板块 -->
  

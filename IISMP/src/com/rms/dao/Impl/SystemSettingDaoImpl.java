@@ -287,4 +287,15 @@ public class SystemSettingDaoImpl extends BaseDao implements SystemSettingDao{
 		hibernateTemplate.delete(msi);
 	}
 
+	/**
+	 * 查询出所有启用的人员
+	 * @return List<MembershipInfo>
+	 * @author yangzijia
+	 */
+	public List<MembershipInfo> findAllUseMember() {
+		@SuppressWarnings("unchecked")
+		List<MembershipInfo> s = hibernateTemplate.find("from MembershipInfo m where m.m_state='启用'");
+		return s;
+	}
+
 }

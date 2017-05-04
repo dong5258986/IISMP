@@ -2230,11 +2230,7 @@ function publishlog2(){
 		}, 
 		success:function(data) {
 			alert("存入草稿箱！");
-			
         } 
     });
 	
 }
-
-
-

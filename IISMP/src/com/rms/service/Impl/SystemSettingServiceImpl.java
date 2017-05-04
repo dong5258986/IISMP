@@ -312,4 +312,13 @@ public class SystemSettingServiceImpl extends BaseService implements SystemSetti
 		}
 	}
 
+	/**
+	 * 查询出所有启用的人员
+	 * @return List<MembershipInfo>
+	 * @author yangzijia
+	 */
+	public List<MembershipInfo> findAllUseMember() {
+		return systemsetDao.findAllUseMember();
+	}
+
 }

@@ -190,6 +190,13 @@ public interface SystemSettingService {
 	 */
 	public abstract void batchqiyongmember(List<String> delList);
 
+	/**
+	 * 查询出所有启用的人员
+	 * @return List<MembershipInfo>
+	 * @author yangzijia
+	 */
+	public abstract List<MembershipInfo> findAllUseMember();
+
 
 
 

@@ -1,6 +1,7 @@
 package com.rms.action;
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.rms.model.Announce_section;
 import com.rms.model.Announcement;
 import com.rms.model.MembershipInfo;
+import com.rms.model.Section;
 
 import com.rms.page.Page;
 import com.rms.util.DateUtil;
@@ -683,6 +685,31 @@ System.out.println("*********--"+announcement_info);
 		out.print(json);
 		out.flush();
 		out.close();	
+	}
+	
+	/**
+	 * 将json数据返回到前端界面的方法
+	 * @param json
+	 * @throws IOException
+	 */
+	public void setPrintWritermethod(JSONObject json) throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		PrintWriter out = response.getWriter();
+		out.print(json);
+		out.flush();
+		out.close();
+	} 
+	
+	/**
+	 * 查看所有的成员分组和成员信息的方法
+	 * @throws Exception
+	 */
+	public String openanno_newpage() throws Exception{
+		List<Section> section = systemsetService.findsectioninfo();
+		List<MembershipInfo> msi = systemsetService.findAllUseMember();
+		request.setAttribute("sectioninfo", section);
+		request.setAttribute("msiinfo", msi);
+		return "success";
 	}
 	
 }
