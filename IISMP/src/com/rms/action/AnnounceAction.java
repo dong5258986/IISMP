@@ -705,6 +705,7 @@ System.out.println("*********--"+announcement_info);
 	 * @throws Exception
 	 */
 	public String openanno_newpage() throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
 		List<Section> section = systemsetService.findsectioninfo();
 		List<MembershipInfo> msi = systemsetService.findAllUseMember();
 		request.setAttribute("sectioninfo", section);
