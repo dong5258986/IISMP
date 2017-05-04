@@ -8,7 +8,7 @@ if(memberinfo.getM_username()==null){
 	response.sendRedirect(request.getContextPath() + "/login.jsp");
 }
 %>
-
+<!-- 这是个测试方法 -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
   <head>
