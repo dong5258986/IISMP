@@ -215,6 +215,7 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
 			      <div class="panel panel-default"  style="width:130%;height:99.3%;margin-left:-50px;">
 					<div class="panel-heading">
 					   <span>已选接受人</span>
+					   <span class="clear" style="float:right;cursor:pointer;">清空</span>
 					</div>
 					<div class="panel-body"  id="nm"  value="">
 					</div>
