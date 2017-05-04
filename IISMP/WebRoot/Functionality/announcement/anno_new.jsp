@@ -108,12 +108,10 @@ List<MembershipInfo> msiinfo = (List<MembershipInfo>)request.getAttribute("msiin
 							  	<div class="col-sm-10" style="width: 300px;">
 							  	<select class="form-control"  id="as_name">
 									  	<%
-									if(ass!=null  && ass.size()> 0){
-										for(int i=0;i<ass.size();i++){
-											Announce_section s = ass.get(i);
-										
+									if(ass!=null){
+										for(Announce_section as : ass){
 									%>
-								 	<option onclick="javascript:void(0);"  value="<%=s.getAs_name()%>"><%=s.getAs_name()%></option>
+								 	<option onclick="javascript:void(0);"  value="<%=as.getAs_name()%>"><%=as.getAs_name()%></option>
 									 <%
 								    	  }
 								      }
