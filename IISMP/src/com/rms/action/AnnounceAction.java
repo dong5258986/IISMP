@@ -275,14 +275,18 @@ public class AnnounceAction extends BaseAction{
 		MembershipInfo memberinfo = (MembershipInfo)session.getAttribute("memberinfo");
 		String time = DateUtil.getStringDate();
 System.out.println(delitems);
-		/*String items = delitems;
-		List delList = new ArrayList();
+		String items = delitems;
+		//ArrayList  delList = new ArrayList();
 		String[] strs = items.split(",");
-		for (String str : strs) {
+		/*for (String str : strs) {
 			delList.add(str);
 		}*/
 		
 		if(anno_editnote.equals("add")){
+			for(String sectionname : strs){
+				
+				System.out.println(sectionname);
+			}
 			Announcement an=new Announcement();
 			an.setAs_name(as_name);
 			an.setAnnouncement_title(announcement_title);
