@@ -305,7 +305,7 @@ List<Approval> approval=(List<Approval>)session.getAttribute("approval");
 </div>
 
 <script>
-function gopage(url) {
+function gopage(url) { 
 if (confirm('您确定要放弃此次申请吗？')) {
 location.href = url;
 }
