@@ -52,8 +52,22 @@ public class ApprovalAction extends BaseAction{
 	private String approval_info;
 	private String apply_member;
 	private String member_section;
+	private String apply_resource;
 	
 	
+	/**dong
+	 * @return the apply_resource
+	 */
+	public String getApply_resource() {
+		return apply_resource;
+	}
+	/**
+	 * @param apply_resource the apply_resource to set
+	 */
+	public void setApply_resource(String apply_resource) {
+		this.apply_resource = apply_resource;
+	}
+
 	// myFile属性用来封装上传的文件
 	private File myFile;
 	
@@ -259,41 +273,11 @@ public class ApprovalAction extends BaseAction{
 		p.setPageNow(pageNow);
 		p.setPageSize(20);	
 		MembershipInfo ms = (MembershipInfo)session.getAttribute("memberinfo");
-		List<Approval> approval=approvalService.findApprovalBymyname(ms.getM_username());	
-		p.setTotalItemNumber(approvalService.findmyAppCount(ms.getM_username()));			
+		List<Approval> approval=approvalService.findApprovalBymyname(ms.getM_truename());	
+		p.setTotalItemNumber(approvalService.findmyAppCount(ms.getM_truename()));			
 		request.setAttribute("pageinfo", p);
 		request.setAttribute("myapproval", approval);
 		return "success";
-	}
-	/**
-	 *新建申请（同时加入到审批表）
-	 */
-	public void addMyapply()throws Exception{
-		/*HttpServletResponse response = ServletActionContext.getResponse();
-		PrintWriter out = response.getWriter();	*/
-		String time = DateUtil.getNowStrDate();		
-		Apply app=new Apply();
-		Approval apr=new Approval();
-		
-		app.setApply_id(apply_id);
-		app.setApply_member(apply_member);
-		app.setApply_time(time);
-		app.setApproval_schedule("审批中");
-		app.setApproval_type(approval_type);
-		app.setApply_info(apply_info);
-		app.setMember_section(member_section);
-		app.setApproval_member(approval_member);
-		
-		apr.setApproval_id(approval_id);
-		apr.setApply_member(apply_member);
-		apr.setApply_time(time);
-		apr.setApproval_member(approval_member);
-		apr.setApproval_section(member_section);
-		apr.setApply_info(apply_info);
-		apr.setApproval_schedule("未审批");
-		apr.setApproval_type(approval_type);
-		approvalService.addappro(apr);
-		approvalService.addMyapply(app);
 	}
 	
 	
@@ -491,6 +475,7 @@ public class ApprovalAction extends BaseAction{
 		json.put("apply_type", myshenpi.getApproval_type());
 		json.put("apply_time", myshenpi.getApply_time());
 		json.put("approval_member", myshenpi.getApproval_member());
+		json.put("apply_resource", myshenpi.getApply_resource());
 		out.print(json);
 		out.flush();
 		out.close();	
@@ -499,67 +484,80 @@ public class ApprovalAction extends BaseAction{
 	}
 	//进行审批
 	public void shenpi()throws Exception{
-		/*HttpServletResponse response = ServletActionContext.getResponse();
-		PrintWriter out = response.getWriter();	*/
+	
 		List<Approval> apps = approvalService.findmyshenpiByid(approval_id);
 		String time = DateUtil.getNowStrDate();		
 		Approval app=apps.get(0);
 		System.out.println(approval_info);
 		if(mydeal.equals("option1")){
-			
-			app.setApproval_info(approval_info);
-			app.setApproval_schedule("已审批");
-			app.setApproval_time(time);
-			approvalService.update(app);
-		}else{
-			
-			app.setApproval_info(approval_info);
-			app.setApproval_schedule("未审批");
-			app.setApproval_time(time);
-			approvalService.update(app);
-			}
-			
-			this.findMyapproval();
+		
+		app.setApproval_info(approval_info);
+		app.setApproval_schedule("已审批");
+		app.setApproval_time(time);
+		approvalService.update(app);
+	}else{
+		
+		app.setApproval_info(approval_info);
+		app.setApproval_schedule("未审批");
+		app.setApproval_time(time);
+		approvalService.update(app);
+		}
+		
+		this.findMyapproval();
 		}
 		
 	//新建申请（测试）
-		public String upload() throws Exception {
+	public String addApply() throws Exception {
 			
-		/*HttpSession session = request.getSession();
-		MembershipInfo ms = (MembershipInfo)session.getAttribute("memberinfo");
-		String username =ms.getM_username();*/
-		//基于myFile创建一个文件输入流
-		InputStream is = new FileInputStream(myFile);
-		
+		String time = DateUtil.getNowStrDate();		
 		// 设置上传文件目录
-		String uploadPath = "d:\\IISMP\\test";
-		
+		String uploadPath = "d:\\IISMP\\Apply_file\\";
+		//基于myFile创建一个文件输入流
+		if(myFile.exists()&&myFile.length()>0){
+		InputStream is = new FileInputStream(myFile);
 		// 设置目标文件
 		File toFile = new File(uploadPath, this.getMyFileFileName());
-		
 		// 创建一个输出流
 		OutputStream os = new FileOutputStream(toFile);
-
 		//设置缓存
 		byte[] buffer = new byte[1024];
-
 		int length = 0;
-
+		myFileFileName = new String(myFileFileName);
+		apply_resource = myFileFileName;
 		//读取myFile文件输出到toFile文件中
 		while ((length = is.read(buffer)) > 0) {
 			os.write(buffer, 0, length);
 		}
-		System.out.println("审批人"+approval_member);
-		System.out.println("上传申报类型"+approval_type);
-		System.out.println("上传申报内容"+apply_info);
-		System.out.println("上传文件名"+myFileFileName);
-		System.out.println("上传文件类型"+myFileContentType);
-		//关闭输入流approval_type
-		is.close();
+		Apply app=new Apply();
+		app.setApply_id(apply_id);
+		app.setApproval_member(apply_member);
+		app.setApproval_type(approval_type);
+		app.setApply_info(apply_info);
+		app.setApply_time(time);
+		app.setApply_member(apply_member);
+		app.setApproval_schedule("未审批");
+		app.setMember_section(member_section);
 		
+		Approval apr=new Approval();
+		apr.setApproval_id(approval_id);
+		apr.setApply_member(apply_member);
+		apr.setApply_time(time);
+		apr.setApproval_member(approval_member);
+		apr.setApproval_section(member_section);
+		apr.setApply_info(apply_info);
+		apr.setApproval_schedule("未审批");
+		apr.setApproval_type(approval_type);
+		apr.setApply_resource(apply_resource);
+		approvalService.addappro(apr);
+		approvalService.addMyapply(app);
+		
+		
+		//关闭输入流
+		is.close();
 		//关闭输出流
 		os.close();
-		
-		return "success"; 
-	}
+		this.ViewApply();
+		}
+		return "success";
+		}
 }

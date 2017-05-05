@@ -21,6 +21,7 @@ public class Approval {
 	private String approval_section;
 	private String approval_schedule;//审批进度
 	private String approval_info;
+	private String apply_resource;
 	@Id
 	@GeneratedValue
 	
@@ -83,6 +84,18 @@ public class Approval {
 	}
 	public void setApproval_info(String approval_info) {
 		this.approval_info = approval_info;
+	}
+	/**dong
+	 * @return the apply_resource
+	 */
+	public String getApply_resource() {
+		return apply_resource;
+	}
+	/**
+	 * @param apply_resource the apply_resource to set
+	 */
+	public void setApply_resource(String apply_resource) {
+		this.apply_resource = apply_resource;
 	}
 	
 	

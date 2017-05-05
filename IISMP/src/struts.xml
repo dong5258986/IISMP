@@ -593,12 +593,9 @@
         <!-- 进行审批-->
         <action name="shenpi" class="approvalAction" method="shenpi"></action>
         
-        <!-- 新建申请-->
-        <action name="addMyapply" class="approvalAction" method="addMyapply"></action>
-        
-        <!-- 新建申请 -->
-        <action name="upload" class="approvalAction" method="upload">
-        <result name="success">/Functionality/approval/uplooad.jsp</result>
+       <!-- 新建申请 -->
+        <action name="addApply" class="approvalAction" method="addApply">
+        <result name="success">/Functionality/approval/appro_index.jsp</result>
         </action>
         
         

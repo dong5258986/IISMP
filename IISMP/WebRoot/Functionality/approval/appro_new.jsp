@@ -140,7 +140,7 @@ List<Approval> approval=(List<Approval>)session.getAttribute("approval");
 							    </div>
 							  </div>
 							  <tr>
-				  		 <div class="col-sm-6">	<td><input  class="btn btn-default btn-info" type="submit" value="确定"></td>
+				  		 <div class="col-sm-6">	<td><input  class="btn btn-default btn-info" type="submit" value="上传"></td>
 				  			<div class="col-sm-2"></div>  <td><input class="btn btn-default" type="reset"></td></div>
 				  			</tr>
 						    </form>	    	  
@@ -305,7 +305,7 @@ List<Approval> approval=(List<Approval>)session.getAttribute("approval");
 </div>
 
 <script>
-function gopage(url) { 
+function gopage(url) {
 if (confirm('您确定要放弃此次申请吗？')) {
 location.href = url;
 }

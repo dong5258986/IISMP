@@ -1194,7 +1194,7 @@ function shuaxintype(){
 		if(str.isempty==false){
 		var thisstr="";
 		$.each(str.jsona, function() {
-			var tr1 = '<td>'+this.rt_name+'</td>';							
+			var tr1 = '<td><a href="javascript:void(0)" onclick="findrt('+this.rt_id+');" data-toggle="modal" data-target="#modal-container-184710" style="text-decoration:none;">'+this.rt_name+'</a></td>';							
 			var tr2='<td>'+this.rt_issuer+'</td>';
 			var tr3='<td>'+this.rt_updatime+'</th>';
 			var tr4='<td>'+this.re_amount+'</th>';						
@@ -1227,7 +1227,7 @@ function shuaxintype(){
 function fileChange(target, id) {
 	// var strFileName = $("#uploadfile").val();
 	var fileSize = 0;
-	var filetypes = [ ".zip", ".rar",".txt",".ppt",".pdf"];
+	var filetypes = [ ".zip", ".rar",".txt",".ppt",".pdf",".java",".doc",".xls",".xlsx"];
 	var filepath = target.value;
 	var filemaxsize = 1024 * 2;// 100M
 	if (filepath) {
@@ -1583,6 +1583,8 @@ function findmyshenpi(obj){
 		}, 
 		success:function(data){
 			var str = eval("("+data+")");
+			
+			var thisstr = "";
 			document.getElementById("mya_schedule").innerHTML=str.approval_schedule;
 			document.getElementById("mya_info").innerHTML=str.apply_info;
 			document.getElementById("mya_aman").innerHTML=str.apply_member;
@@ -1590,6 +1592,10 @@ function findmyshenpi(obj){
 			document.getElementById("mya_type").innerHTML=str.apply_type;
 			document.getElementById("mya_time").innerHTML=str.apply_time;
 			document.getElementById("mya_name").innerHTML=str.approval_member;
+			
+			var tr9="<td><a href='downloadapply?filename="+str.apply_resource+"'>点击下载</a></td>";							
+			thisstr = thisstr + "<tr>" + tr9 +  "</tr>";
+			document.getElementById("download").innerHTML=thisstr;
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
@@ -1719,7 +1725,7 @@ function Checkcontest(){
 		alert("嘿！您老还没选择要上传的文件呢（O_*）");
 		return false;
 	} else {
-		alert("dsf");
+		
 		document.dataForm1.action ="updateconimage";
 	}
 }
@@ -2230,7 +2236,11 @@ function publishlog2(){
 		}, 
 		success:function(data) {
 			alert("存入草稿箱！");
+			
         } 
     });
 	
 }
+
+
+
